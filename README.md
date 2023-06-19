@@ -1,4 +1,4 @@
-# Slary per hour
+# Salary per hour
 
 ## Assumptions
 - 2 shift
