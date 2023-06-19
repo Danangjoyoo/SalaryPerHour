@@ -1,0 +1,3 @@
+sqlalchemy
+celery
+pydantic
