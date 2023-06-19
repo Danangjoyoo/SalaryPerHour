@@ -8,7 +8,7 @@ from ..database.query_wrapper import bulk_save
 from ..database.repository import select_all_branch_id, select_all_employees
 
 
-def group_employee_by_branch(employees: List[EmployeeCSV]):
+def group_employee_by_branch(employees: List[EmployeeCSV]) -> Dict[int, List[EmployeeCSV]]:
     """
     Group hierarchy of employee
     1. branch

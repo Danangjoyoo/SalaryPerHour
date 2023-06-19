@@ -1,10 +1,9 @@
-import datetime
 import pandas as pd
 from pydantic import BaseModel
+from typing import List
 
-from .schema import EmployeeCSV
 
-def convert_row_to_object(filepath, schema: BaseModel):
+def convert_row_to_object(filepath: str, schema: BaseModel) -> List[BaseModel]:
     df = pd.read_csv(filepath)
     map_list = [
         schema(**{

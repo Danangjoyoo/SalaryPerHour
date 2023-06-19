@@ -1,6 +1,6 @@
 import datetime
 from pydantic import BaseModel, validator
-from typing import Optional, Union
+from typing import Any, List, Optional, Union
 
 
 class EmployeeCSV(BaseModel):
@@ -11,7 +11,7 @@ class EmployeeCSV(BaseModel):
     resign_date: Union[float, datetime.date]
 
     @validator("resign_date")
-    def validate_resign_date(cls, value):
+    def validate_resign_date(cls, value: Union[datetime.date, str]):
         if str(value) == "nan":
             return None
         return value
@@ -29,19 +29,19 @@ class TimesheetCSV(BaseModel):
         return self.checkout - self.checkin
 
     @validator("date")
-    def validate_date(cls, value):
+    def validate_date(cls, value: Union[datetime.date, str]):
         if str(value) == "nan":
             return None
         return value
 
     @validator("checkin")
-    def validate_checkin(cls, value, values):
+    def validate_checkin(cls, value: Union[datetime.datetime, str], values: List[Any]):
         if str(value) == "nan":
             value = "09:00:00"
         return cls.get_check_datetime(values["date"], value)
 
     @validator("checkout")
-    def validate_checkout(cls, value, values):
+    def validate_checkout(cls, value: Union[datetime.datetime, str], values: List[Any]):
         if str(value) == "nan":
             value = "17:00:00"
 
@@ -56,7 +56,7 @@ class TimesheetCSV(BaseModel):
 
 
     @classmethod
-    def get_check_datetime(cls, date_, time_str):
+    def get_check_datetime(cls, date_: datetime.date, time_str: str):
         time_ = datetime.datetime.strptime(time_str, "%H:%M:%S")
         datetime_ = datetime.datetime(
             date_.year, date_.month, date_.day,

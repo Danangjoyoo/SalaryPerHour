@@ -1,18 +1,18 @@
-from typing import List
+from typing import Any, List
 from sqlalchemy.sql.selectable import Select
 from .connection import session
 from .models import Base
 
 
-def get_all(query: Select):
+def get_all(query: Select) -> List[Any]:
     with session() as sess:
         return sess.execute(query).all()
 
-def get_scalar_all(query: Select):
+def get_scalar_all(query: Select) -> List[Any]:
     with session() as sess:
         return sess.execute(query).scalars().all()
 
-def get_first(query: Select):
+def get_first(query: Select) -> Any:
     with session() as sess:
         return sess.execute(query).first()
 

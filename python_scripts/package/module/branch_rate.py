@@ -1,5 +1,5 @@
 import datetime
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 from ..database.models import Branch_Rate
 from ..database.query_wrapper import bulk_save
@@ -30,14 +30,14 @@ def get_time_range() -> List[Tuple[datetime.datetime]]:
     return time_range
 
 
-def generate_rate_key(branch_id, year, month):
+def generate_rate_key(branch_id: int, year: int, month: int) -> str:
     """
     generate rate key
     """
     return f"{branch_id}_{year}_{month}"
 
 
-def get_rate_map():
+def get_rate_map() -> Dict[str, Branch_Rate]:
     """
     Get rate map which mapped by unique key
     """

@@ -1,10 +1,11 @@
 # Salary per hour
 
 ## Assumptions
-- 2 shift
-    - morning shift: 9-17
-    - night shift: 17-9
-- if duplicated employee, wil take the latest one
+- there are 2 shifts
+    - morning shift: 09:00 - 17:00
+    - night shift: 17:00 - 09:00
+- if duplicated employee, wiLl take the latest one
+- any new csv files will always named `employees.csv` and `timesheets.csv`, and will be placed under `/dataset` directory
 
 ## How to deploy?
 1. make sure you have docker installed in your machine
