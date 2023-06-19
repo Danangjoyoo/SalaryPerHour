@@ -1,3 +1,6 @@
+DELETE FROM employees;
+DELETE FROM timesheets;
+
 
 CREATE TEMPORARY TABLE temp_table_employee (
     employee_id INTEGER,
